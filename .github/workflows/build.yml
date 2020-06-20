@@ -25,6 +25,9 @@ jobs:
 #        run: ./gradlew desktop:jar
         run: ./gradlew lwjgl3:jar --stacktrace
 
+      - name: Build protection
+        run: ./gradlew lwjgl3:proguard
+
       - name: Build deb/rpm
 #        run: ./gradlew desktop:jpackage
         run: ./gradlew lwjgl3:jpackage
@@ -69,6 +72,10 @@ jobs:
       - name: Build jar
 #        run: ./gradlew.bat desktop:jar
         run: ./gradlew.bat lwjgl3:jar
+
+      - name: Build protection
+        run: ./gradlew lwjgl3:proguard
+
 
       - name: Build exe/msi
 #        run: ./gradlew.bat desktop:jpackage
