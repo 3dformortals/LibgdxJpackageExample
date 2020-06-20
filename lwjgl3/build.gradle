@@ -85,7 +85,7 @@ runtime {
 		// change those
 		installerOptions += [ '--vendor', 'NAME', '--description', 'SHORT DESCRIPTION' ]
 //		mainJar = jar.archiveFileName.get()
-		mainJar = "build/lib/prot.jar"
+		mainJar = "prot.jar"
 //		mainJar = "${jar.destinationDirectory.get()}/${appName}-${jar.archiveVersion.get()}prot.jar"
 		installerName = imageName = appName // set installer and filename to the project name
 
