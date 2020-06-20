@@ -38,8 +38,8 @@ jar {
 	// gdx sets it up by default in build/libs, jpackage requires the jar to be in build/lib, therefore we need to change that
 	destinationDirectory = file("$buildDir/lib")
 	archiveFileName = "${appName}-${archiveVersion.get()}.jar"
-//	from { configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
-	from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+	from { configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+//	from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
 	manifest {
 		attributes 'Main-Class': project.mainClassName
 	}
