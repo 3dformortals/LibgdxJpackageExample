@@ -23,7 +23,7 @@ jobs:
 
       - name: Build jar
 #        run: ./gradlew desktop:jar
-        run: ./gradlew lwjgl3:jar
+        run: ./gradlew lwjgl3:jar --stacktrace
 
       - name: Build deb/rpm
 #        run: ./gradlew desktop:jpackage

@@ -53,6 +53,7 @@ task proguard(type: proguard.gradle.ProGuardTask) {
 	} else {
 		libraryjars "${System.getProperty('java.home')}/jmods/java.base.jmod", jarfilter: '!**.jar', filter: '!module-info.class'
 	}
+//	libraryjars "/home/user/Downloads/jdk-14.0.1/jmods/java.base.jmod", jarfilter: '!**.jar', filter: '!module-info.class'
 	injars "${jar.destinationDirectory.get()}/${jar.archiveFileName.get()}}" // 'build/libs/bvc-0.0.1-SNAPSHOT.jar'
 	outjars "${jar.destinationDirectory.get()}/${appName}-${jar.archiveVersion.get()}prot.jar" // 'build/libs/bvc-0.0.1-obf.jar'
 }
