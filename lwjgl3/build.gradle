@@ -50,7 +50,7 @@ jar {
 
 task proguard(type: proguard.gradle.ProGuardTask) {
 	configuration 'proguard-rules.pro'
-	printmapping 'build/libs/out.map'
+	printmapping 'build/lib/out.map'
 	if (System.getProperty('java.version').startsWith('1.')) {
 		libraryjars "${System.getProperty('java.home')}/lib/rt.jar"
 	} else {
