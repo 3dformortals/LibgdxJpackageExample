@@ -22,13 +22,16 @@ jobs:
 
 
       - name: Build jar
-        run: ./gradlew desktop:jar
+#        run: ./gradlew desktop:jar
+        run: ./gradlew lwjgl3:jar
 
       - name: Build deb/rpm
-        run: ./gradlew desktop:jpackage
+#        run: ./gradlew desktop:jpackage
+        run: ./gradlew lwjgl3:jpackage
 
       - name: Fix file names
-        run: mv desktop/build/lib/*.jar GdxJpackage-linux.jar && mv desktop/build/jpackage/*.deb GdxJpackage.deb && mv desktop/build/jpackage/*.rpm GdxJpackage.rpm
+#        run: mv desktop/build/lib/*.jar GdxJpackage-linux.jar && mv desktop/build/jpackage/*.deb GdxJpackage.deb && mv desktop/build/jpackage/*.rpm GdxJpackage.rpm
+        run: mv lwjgl3/build/lib/*.jar GdxJpackage-linux.jar && mv lwjgl3/build/jpackage/*.deb GdxJpackage.deb && mv lwjgl3/build/jpackage/*.rpm GdxJpackage.rpm
 
 
       - name: Upload jar artifact
@@ -64,13 +67,15 @@ jobs:
 
 
       - name: Build jar
-        run: ./gradlew.bat desktop:jar
+#        run: ./gradlew.bat desktop:jar
+        run: ./gradlew.bat lwjgl3:jar
 
       - name: Build exe/msi
-        run: ./gradlew.bat desktop:jpackage
+#        run: ./gradlew.bat desktop:jpackage
+        run: ./gradlew.bat lwjgl3:jpackage
 
       - name: Fix file names
-        run: mv desktop/build/lib/*.jar GdxJpackage-windows.jar && mv desktop/build/jpackage/*.exe GdxJpackage.exe && mv desktop/build/jpackage/*.msi GdxJpackage.msi
+        run: mv lwjgl3/build/lib/*.jar GdxJpackage-windows.jar && mv lwjgl3/build/jpackage/*.exe GdxJpackage.exe && mv lwjgl3/build/jpackage/*.msi GdxJpackage.msi
 
 
       - name: Upload jar artifact

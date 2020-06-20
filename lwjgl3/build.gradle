@@ -38,12 +38,26 @@ jar {
 	// gdx sets it up by default in build/libs, jpackage requires the jar to be in build/lib, therefore we need to change that
 	destinationDirectory = file("$buildDir/lib")
 	archiveFileName = "${appName}-${archiveVersion.get()}.jar"
-	from { configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) } } 
+//	from { configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+	from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
 	manifest {
 		attributes 'Main-Class': project.mainClassName
 	}
 }
 
+task proguard(type: proguard.gradle.ProGuardTask) {
+	configuration 'proguard-rules.pro'
+	printmapping 'build/libs/out.map'
+	if (System.getProperty('java.version').startsWith('1.')) {
+		libraryjars "${System.getProperty('java.home')}/lib/rt.jar"
+	} else {
+		libraryjars "${System.getProperty('java.home')}/jmods/java.base.jmod", jarfilter: '!**.jar', filter: '!module-info.class'
+	}
+	injars "${jar.destinationDirectory.get()}/${jar.archiveFileName.get()}}" // 'build/libs/bvc-0.0.1-SNAPSHOT.jar'
+	outjars "${jar.destinationDirectory.get()}/${appName}-${jar.archiveVersion.get()}prot.jar" // 'build/libs/bvc-0.0.1-obf.jar'
+}
+
+jar.dependsOn.proguard
 
 jpackageImage.dependsOn jar
 
@@ -63,7 +77,8 @@ runtime {
 	jpackage {
 		// change those
 		installerOptions += [ '--vendor', 'NAME', '--description', 'SHORT DESCRIPTION' ]
-		mainJar = jar.archiveFileName.get()
+//		mainJar = jar.archiveFileName.get()
+		mainJar = "${jar.destinationDirectory.get()}/${appName}-${jar.archiveVersion.get()}prot.jar"
 		installerName = imageName = appName // set installer and filename to the project name
 
 		if (OperatingSystem.current().windows) {
