@@ -23,14 +23,14 @@ jobs:
 
       - name: Build jar
 #        run: ./gradlew desktop:jar
-        run: ./gradlew lwjgl3:jar --stacktrace
+        run: ./gradlew lwjgl3:jar
 
       - name: Build protection
         run: ./gradlew lwjgl3:proguard
 
       - name: Build deb/rpm
 #        run: ./gradlew desktop:jpackage
-        run: ./gradlew lwjgl3:jpackage
+        run: ./gradlew lwjgl3:jpackage --stacktrace
 
       - name: Fix file names
 #        run: mv desktop/build/lib/*.jar GdxJpackage-linux.jar && mv desktop/build/jpackage/*.deb GdxJpackage.deb && mv desktop/build/jpackage/*.rpm GdxJpackage.rpm

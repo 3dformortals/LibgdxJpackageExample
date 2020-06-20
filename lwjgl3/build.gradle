@@ -49,6 +49,7 @@ jar {
 
 
 task proguard(type: proguard.gradle.ProGuardTask) {
+	outputs.upToDateWhen { false }
 	configuration 'proguard-rules.pro'
 	printmapping 'build/lib/out.map'
 	if (System.getProperty('java.version').startsWith('1.')) {
@@ -58,7 +59,7 @@ task proguard(type: proguard.gradle.ProGuardTask) {
 	}
 //	libraryjars "/home/user/Downloads/jdk-14.0.1/jmods/java.base.jmod", jarfilter: '!**.jar', filter: '!module-info.class'
 	injars "build/lib/test.jar"
-	outjars "build/lib/prot.jar"
+	outjars "build/lib/test.jar"
 //	injars "${jar.destinationDirectory.get()}/${jar.archiveFileName.get()}}" // 'build/libs/bvc-0.0.1-SNAPSHOT.jar'
 //	outjars "${jar.destinationDirectory.get()}/${appName}-${jar.archiveVersion.get()}prot.jar" // 'build/libs/bvc-0.0.1-obf.jar'
 }
@@ -85,7 +86,7 @@ runtime {
 		// change those
 		installerOptions += [ '--vendor', 'NAME', '--description', 'SHORT DESCRIPTION' ]
 //		mainJar = jar.archiveFileName.get()
-		mainJar = "prot.jar"
+		mainJar = "test.jar"
 //		mainJar = "${jar.destinationDirectory.get()}/${appName}-${jar.archiveVersion.get()}prot.jar"
 		installerName = imageName = appName // set installer and filename to the project name
 
