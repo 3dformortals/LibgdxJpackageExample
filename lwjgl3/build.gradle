@@ -60,6 +60,7 @@ task proguard(type: proguard.gradle.ProGuardTask) {
 //	libraryjars "/home/user/Downloads/jdk-14.0.1/jmods/java.base.jmod", jarfilter: '!**.jar', filter: '!module-info.class'
 	injars "build/lib/test.jar"
 	outjars "build/lib/prot.jar"
+
 //	injars "${jar.destinationDirectory.get()}/${jar.archiveFileName.get()}}" // 'build/libs/bvc-0.0.1-SNAPSHOT.jar'
 //	outjars "${jar.destinationDirectory.get()}/${appName}-${jar.archiveVersion.get()}prot.jar" // 'build/libs/bvc-0.0.1-obf.jar'
 }
@@ -67,7 +68,7 @@ task proguard(type: proguard.gradle.ProGuardTask) {
 proguard.dependsOn jar
 
 //jpackageImage.dependsOn jar
-jpackageImage.dependsOn proguard
+jpackage.dependsOn proguard
 
 runtime {
 	// jlink options
@@ -86,7 +87,7 @@ runtime {
 		// change those
 		installerOptions += [ '--vendor', 'NAME', '--description', 'SHORT DESCRIPTION' ]
 //		mainJar = jar.archiveFileName.get()
-		mainJar = "test.jar"
+		mainJar = "prot.jar"
 //		mainJar = "${jar.destinationDirectory.get()}/${appName}-${jar.archiveVersion.get()}prot.jar"
 		installerName = imageName = appName // set installer and filename to the project name
 
